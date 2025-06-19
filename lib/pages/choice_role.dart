@@ -1,3 +1,4 @@
+import 'package:absen_app/pages/login.dart';
 import 'package:absen_app/pages/roles/employe.dart';
 import 'package:flutter/material.dart';
 import 'package:absen_app/pages/roles/manager.dart';
@@ -12,7 +13,7 @@ class ChoiceRole extends StatefulWidget {
 
 class _HomeAppState extends State<ChoiceRole> {
   final PageController _controller = PageController();
-
+  
   @override
   void dispose() {
     _controller.dispose();
@@ -39,10 +40,12 @@ class _HomeAppState extends State<ChoiceRole> {
               children: [
                 LoginManager(
                   onTap: () {
-                    // Navigasi ke halaman login manager
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage(role: 'Manager')));
                   },
                 ),
-                LoginKaryawan(onTap: () {}),
+                LoginKaryawan(onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginPage(role: 'Karyawan')));
+                }),
               ],
             ),
           ),
