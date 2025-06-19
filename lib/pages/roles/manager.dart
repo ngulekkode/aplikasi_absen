@@ -7,6 +7,8 @@ class LoginManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // mainAxisSize: MainAxisSize.min,
+      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Flexible(child: Image.asset('assets/manager.png', width: 400, height: 400, fit: BoxFit.contain,)),
         const SizedBox(height: 5),
