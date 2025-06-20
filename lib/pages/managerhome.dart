@@ -11,10 +11,7 @@ class ManagerHome extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
       body: const Center(
-        child: Text(
-          'Selamat datang, Manager!',
-          style: TextStyle(fontSize: 24),
-        ),
+        child: Text('Selamat datang, Manager!', style: TextStyle(fontSize: 24)),
       ),
     );
   }

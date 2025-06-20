@@ -4,14 +4,11 @@ import 'package:absen_app/pages/login.dart';
 import 'package:absen_app/pages/karyawanhome.dart';
 import 'package:absen_app/pages/managerhome.dart';
 
-
-class AppRoute{
+class AppRoute {
   final GoRouter router = GoRouter(
     initialLocation: '/',
-  routes: [
-    GoRoute(path: '/',
-    builder: (context, state) => ChoiceRole(),),
-
+    routes: [
+      GoRoute(path: '/', builder: (context, state) => ChoiceRole()),
       GoRoute(
         path: '/login/:role',
         builder: (context, state) {
@@ -21,16 +18,13 @@ class AppRoute{
       ),
       GoRoute(
         path: '/home/manager',
-        builder: (context, state) => const ManagerHome()
+        builder: (context, state) => const ManagerHome(),
       ),
       GoRoute(
         path: '/home/karyawan',
         builder: (context, state) => const EmployeHome(),
       ),
-
-  ]
-
-
-  
+    ],
   );
 }
+

@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
 
     // Dummy login logic
     if (nik == '123' && password == 'abc') {
-      if (role == 'manager'){
+      if (role == 'manager') {
         context.go('/home/manager');
       } else {
         context.go('/home/karyawan');
@@ -49,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             const SizedBox(height: 5),
 
             const Center(
@@ -112,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
               controller: _passwordController,
               obscureText: _obscurePassword,
               decoration: InputDecoration(
-                
                 hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.orange),
                 border: border,

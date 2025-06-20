@@ -44,37 +44,37 @@ class _HomeAppState extends State<ChoiceRole> {
 
   Padding _pageIndicator() {
     return Padding(
-          padding: const EdgeInsets.only(bottom: 50),
-          child: SmoothPageIndicator(
-            controller: _controller,
-            count: 2,
-            effect: const WormEffect(
-              activeDotColor: Colors.red,
-              dotHeight: 10,
-              dotWidth: 10,
-            ),
-          ),
-        );
+      padding: const EdgeInsets.only(bottom: 50),
+      child: SmoothPageIndicator(
+        controller: _controller,
+        count: 2,
+        effect: const WormEffect(
+          activeDotColor: Colors.red,
+          dotHeight: 10,
+          dotWidth: 10,
+        ),
+      ),
+    );
   }
 
   Expanded _choiceLoginRole(BuildContext context) {
     return Expanded(
-          child: PageView(
-            controller: _controller,
-            children: [
-              LoginManager(
-                onTap: () {
-                  context.go('/login/manager');
-                },
-              ),
-              LoginKaryawan(
-                onTap: () {
-                  context.go('/login/Karyawan');
-                },
-              ),
-            ],
+      child: PageView(
+        controller: _controller,
+        children: [
+          LoginManager(
+            onTap: () {
+              context.go('/login/manager');
+            },
           ),
-        );
+          LoginKaryawan(
+            onTap: () {
+              context.go('/login/Karyawan');
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   Column _headerLoginTeks(double screenWidth, double maxTextWidth) {
