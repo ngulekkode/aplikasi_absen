@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   final String role;
@@ -22,10 +23,10 @@ class _LoginPageState extends State<LoginPage> {
 
     // Dummy login logic
     if (nik == '123' && password == 'abc') {
-      if (role == 'manager') {
-        Navigator.pushReplacementNamed(context, '/managerHome');
+      if (role == 'manager'){
+        context.go('/home/manager');
       } else {
-        Navigator.pushReplacementNamed(context, '/karyawanHome');
+        context.go('/home/karyawan');
       }
     } else {
       ScaffoldMessenger.of(
