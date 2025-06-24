@@ -1,14 +1,17 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:absen_app/pages/choice_role.dart';
 import 'package:absen_app/pages/login.dart';
+import 'package:absen_app/pages/home.dart';
 import 'package:absen_app/pages/karyawanhome.dart';
-import 'package:absen_app/pages/managerhome.dart';
+// import 'package:absen_app/pages/managerhome.dart';
+import 'package:absen_app/pages/cuti.dart';
 
-class AppRoute {
-  final GoRouter router = GoRouter(
+final routerProvider = Provider<GoRouter>((ref) {
+  return GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => ChoiceRole()),
+      GoRoute(path: '/', builder: (context, state) => const ChoiceRole()),
       GoRoute(
         path: '/login/:role',
         builder: (context, state) {
@@ -18,13 +21,17 @@ class AppRoute {
       ),
       GoRoute(
         path: '/home/manager',
-        builder: (context, state) => const ManagerHome(),
+        builder: (context, state) => const HomePage(),
       ),
       GoRoute(
         path: '/home/karyawan',
-        builder: (context, state) => const EmployeHome(),
+        builder: (context, state) => const EmployeHome (),
+      ),
+      GoRoute(
+        path: '/cuti',
+        builder: (context, state) => const LeaveRequestPage(),
       ),
     ],
   );
-}
+});
 
