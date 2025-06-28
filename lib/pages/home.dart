@@ -127,7 +127,7 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset('assets/map_dummy.png'),
               ),
-              onTap: () => context.goNamed('/leave'),
+              onTap: () => context.push('/leave'),
             ),
           ),
 
