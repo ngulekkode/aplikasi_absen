@@ -24,7 +24,9 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: const Text('Cuti', style: TextStyle(color: Colors.white)),
         centerTitle: true,

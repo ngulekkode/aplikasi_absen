@@ -19,7 +19,7 @@ class AbsenSuksesPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'assets/absen_sukses.png', // Ganti dengan nama file ilustrasimu
+                'assets/present_yeay.png', // Ganti dengan nama file ilustrasimu
                 height: 200,
               ),
               const SizedBox(height: 20),

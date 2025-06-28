@@ -22,17 +22,17 @@ class _LoginPageState extends State<LoginPage> {
     String role = widget.role;
 
     // Dummy login logic
-    if (nik == '123' && password == 'abc') {
-      if (role == 'manager') {
-        context.go('/home/manager');
-      } else {
-        context.go('/home/karyawan');
-      }
+    // if (nik == '123' && password == 'abc') {
+    if (role == 'manager') {
+      context.go('/home/manager');
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Login gagal untuk $role')));
+      context.go('/home/karyawan');
     }
+    // } else {
+    //   ScaffoldMessenger.of(
+    //     context,
+    //   ).showSnackBar(SnackBar(content: Text('Login gagal untuk $role')));
+    // }
   }
 
   @override
