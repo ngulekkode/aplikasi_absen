@@ -20,12 +20,16 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
+        path: '/leave',
+        builder: (context, state) => const LeaveRequestPage(),
+      ),
+      GoRoute(
         path: '/home/manager',
         builder: (context, state) => const HomePage(),
       ),
       GoRoute(
         path: '/home/karyawan',
-        builder: (context, state) => const EmployeHome (),
+        builder: (context, state) => const EmployeHome(),
       ),
       GoRoute(
         path: '/cuti',
@@ -34,4 +38,3 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
-

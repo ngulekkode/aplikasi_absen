@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatelessWidget {
@@ -121,9 +122,12 @@ class HomePage extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset('assets/map_dummy.png'),
+            child: GestureDetector(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset('assets/map_dummy.png'),
+              ),
+              onTap: () => context.goNamed('/leave'),
             ),
           ),
 
