@@ -1,3 +1,4 @@
+import 'package:absen_app/pages/done_absen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:absen_app/pages/choice_role.dart';
@@ -26,6 +27,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/home/manager',
         builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        path: '/done_presence',
+        builder: (context, state) => const AbsenSuksesPage(),
       ),
       GoRoute(
         path: '/home/karyawan',

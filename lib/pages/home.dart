@@ -23,7 +23,8 @@ class HomePage extends StatelessWidget {
         ],
       ),
       drawer: const Drawer(),
-      body: Column(
+      body: ListView(
+        padding: EdgeInsets.zero,
         children: [
           Container(
             decoration: const BoxDecoration(
@@ -125,7 +126,7 @@ class HomePage extends StatelessWidget {
             child: GestureDetector(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset('assets/map_dummy.png'),
+                child: Image.asset('assets/maps.jpg'),
               ),
               onTap: () => context.push('/leave'),
             ),
@@ -133,25 +134,42 @@ class HomePage extends StatelessWidget {
 
           const SizedBox(height: 10),
 
-          Text(
-            '$jam AM',
-            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+            child: Center(
+              child: Text(
+                '$jam AM',
+                style: const TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
 
           const SizedBox(height: 10),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              _MenuButton(icon: Icons.fingerprint, label: 'HADIR'),
+            children: [
+              _MenuButton(
+                icon: Icons.fingerprint,
+                label: 'HADIR',
+                onPressed: () {
+                  context.push('/done_presence');
+                },
+              ),
               _MenuButton(icon: Icons.attach_file, label: 'LAMPIRAN'),
             ],
           ),
 
           const SizedBox(height: 10),
-          const Text(
-            'Lokasi anda saat ini : Kantor',
-            style: TextStyle(fontSize: 12),
+          Padding(
+            padding: EdgeInsetsGeometry.only(left: 16, right: 16),
+            child: const Text(
+              'Lokasi anda saat ini : Kantor',
+              style: TextStyle(fontSize: 12),
+            ),
           ),
 
           const SizedBox(height: 15),
@@ -173,9 +191,10 @@ class HomePage extends StatelessWidget {
 
           const SizedBox(height: 8),
 
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+          Padding(
+            padding: EdgeInsetsGeometry.all(16),
+            child: Column(
+              // padding: const EdgeInsets.symmetric(horizontal: 16),
               children: const [
                 _AbsenTile(
                   tanggal: 'Kamis, 14 Desember 2022 : 15:56',
@@ -190,8 +209,59 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
+
+          const SizedBox(height: 24),
+
+          // create button lainnya for bottomsheet
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: _BottomSheetButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Wrap(
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.settings),
+                          title: const Text('Pengaturan'),
+                          onTap: () {
+                            // Add your action here
+                            // Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text('Lainnya'),
+            ),
+          ),
+
+          const SizedBox(height: 24),
         ],
       ),
+    );
+  }
+}
+
+class _BottomSheetButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+
+  const _BottomSheetButton({required this.onPressed, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.orange,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      ),
+      onPressed: onPressed,
+      child: child,
     );
   }
 }
@@ -229,8 +299,9 @@ class _StatBox extends StatelessWidget {
 class _MenuButton extends StatelessWidget {
   final IconData icon;
   final String label;
+  final void Function()? onPressed;
 
-  const _MenuButton({required this.icon, required this.label});
+  const _MenuButton({required this.icon, required this.label, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -242,7 +313,11 @@ class _MenuButton extends StatelessWidget {
       ),
       icon: Icon(icon, size: 20),
       label: Text(label),
-      onPressed: () {},
+      onPressed: () {
+        if (onPressed != null) {
+          onPressed!();
+        }
+      },
     );
   }
 }
