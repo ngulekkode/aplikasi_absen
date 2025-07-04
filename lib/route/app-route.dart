@@ -1,11 +1,12 @@
 import 'package:absen_app/pages/done_absen.dart';
+import 'package:absen_app/pages/history_absen.dart';
+import 'package:absen_app/pages/profile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:absen_app/pages/choice_role.dart';
 import 'package:absen_app/pages/login.dart';
 import 'package:absen_app/pages/home.dart';
 import 'package:absen_app/pages/karyawanhome.dart';
-// import 'package:absen_app/pages/managerhome.dart';
 import 'package:absen_app/pages/cuti.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -21,7 +22,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: '/leave',
+        path: '/cuti',
         builder: (context, state) => const LeaveRequestPage(),
       ),
       GoRoute(
@@ -33,12 +34,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const AbsenSuksesPage(),
       ),
       GoRoute(
-        path: '/home/karyawan',
-        builder: (context, state) => const EmployeHome(),
+        path: '/history_absen',
+        builder: (context, state) => const HistoryAbsen(),
       ),
       GoRoute(
-        path: '/cuti',
-        builder: (context, state) => const LeaveRequestPage(),
+        path: '/profile',
+        builder: (context, state) => const ProfilePage(),
       ),
     ],
   );

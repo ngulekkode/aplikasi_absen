@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/avatar.png'),
+                      backgroundImage: AssetImage('assets/pp.png'),
                     ),
                     const SizedBox(width: 10),
                     Column(
@@ -128,7 +128,6 @@ class HomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset('assets/maps.jpg'),
               ),
-              onTap: () => context.push('/leave'),
             ),
           ),
 
@@ -154,7 +153,7 @@ class HomePage extends StatelessWidget {
             children: [
               _MenuButton(
                 icon: Icons.fingerprint,
-                label: 'HADIR',
+                label: 'Absen Masuk',
                 onPressed: () {
                   context.push('/done_presence');
                 },
@@ -164,20 +163,25 @@ class HomePage extends StatelessWidget {
           ),
 
           const SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsetsGeometry.only(left: 16, right: 16),
-            child: const Text(
-              'Lokasi anda saat ini : Kantor',
-              style: TextStyle(fontSize: 12),
+          Center(
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(left: 16, right: 16),
+              child: const Text(
+                'Lokasi anda saat ini : Kantor',
+                style: TextStyle(fontSize: 12),
+              ),
             ),
           ),
 
           const SizedBox(height: 15),
 
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Align(
               alignment: Alignment.centerLeft,
+              child: TextButton(onPressed: () {
+                context.push('/history_absen');
+              },
               child: Text(
                 'Riwayat Absensi',
                 style: TextStyle(
@@ -188,7 +192,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-
+          ),
           const SizedBox(height: 8),
 
           Padding(
@@ -219,18 +223,69 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
+                  isScrollControlled:
+                      true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
+                  ),
+                  backgroundColor: Colors.white,
                   builder: (context) {
-                    return Wrap(
-                      children: [
-                        ListTile(
-                          leading: const Icon(Icons.settings),
-                          title: const Text('Pengaturan'),
-                          onTap: () {
-                            // Add your action here
-                            // Navigator.pop(context);
-                          },
+                    return FractionallySizedBox(
+                      heightFactor: 0.35,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        child: GridView.count(
+                          padding: EdgeInsets.all(16),
+                          crossAxisCount: 4, // item baris
+                          mainAxisSpacing: 8, 
+                          crossAxisSpacing:8,
+                          // childAspectRatio: 0.3,
+                          // shrinkWrap: true,
+                          physics:AlwaysScrollableScrollPhysics(),
+                          children: [
+                            _BottomSheetMenuItem(
+                              icon: Icons.date_range_outlined,
+                              label: 'Cuti',
+                              onTap: () {
+                                context.push('/cuti');
+                              },
+                            ),
+                            _BottomSheetMenuItem(
+                              icon: Icons.person,
+                              label: 'Profil',
+                              onTap: () {
+                                context.push('/profile');
+                              },
+                            ),
+                            _BottomSheetMenuItem(
+                              icon: Icons.access_time_sharp,
+                              label: 'Lembur',
+                              onTap: () {
+                                
+                              },
+                            ),
+                            _BottomSheetMenuItem(
+                              icon: Icons.sick_outlined,
+                              label: 'Sakit',
+                              onTap: () {
+                                
+                              },
+                            ),
+                            _BottomSheetMenuItem(
+                              icon: Icons.help,
+                              label: 'Bantuan',
+                              onTap: () => {},
+                            ),
+                            _BottomSheetMenuItem(
+                              icon: Icons.calendar_month_outlined,
+                              label: 'Jadwal',
+                              onTap: () => {},
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     );
                   },
                 );
@@ -240,6 +295,34 @@ class HomePage extends StatelessWidget {
           ),
 
           const SizedBox(height: 24),
+        ],
+      ),
+    );
+  }
+}
+
+class _BottomSheetMenuItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _BottomSheetMenuItem({required this.icon, required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(26),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircleAvatar(
+            radius: 24,
+          
+            child: Icon(icon, size: 28, color: Colors.blue),
+          ),
+          SizedBox(height: 8),
+          Text(label, style: TextStyle(fontSize: 14)),
         ],
       ),
     );
