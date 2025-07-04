@@ -18,9 +18,9 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF4A63D9),
+      backgroundColor: const Color(0xFF1A73E8),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF4A63D9),
+        backgroundColor: const Color(0xFF1A73E8),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),

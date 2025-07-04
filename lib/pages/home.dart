@@ -22,7 +22,75 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const Drawer(),
+drawer: Drawer(
+  child: Column(
+    children: [
+      // Header dengan nama & email
+      UserAccountsDrawerHeader(
+        accountName: Text("budi pelopor"),
+        accountEmail: Text("hartoyono@example.com"),
+        currentAccountPicture: CircleAvatar(
+          backgroundColor: Colors.white,
+          child: Icon(Icons.person, color: Colors.blue, size: 40),
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF4B64D9), Color(0xFF5AC8FA)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+      ),
+      // Menu item utama
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('Beranda'),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.history),
+        title: Text('Riwayat Absen'),
+        onTap: () {
+          Navigator.pushNamed(context, '/riwayat');
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.settings),
+        title: Text('Pengaturan'),
+        onTap: () {
+          // Tambahkan aksi pengaturan
+        },
+      ),
+      const Divider(),
+
+      // Bantuan atau info
+      ListTile(
+        leading: Icon(Icons.info_outline),
+        title: Text('Tentang Aplikasi'),
+        onTap: () {},
+      ),
+
+      const Spacer(),
+
+      // Logout di bawah
+      Padding(
+        padding: EdgeInsets.only(bottom: 16),
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundImage: AssetImage('assets/pp.png'),
+          ),
+          title: Text("Keluar", style: TextStyle(color: Colors.red)),
+          onTap: () {
+            context.push('/start');
+          },
+        ),
+      ),
+    ],
+  ),
+),
+
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -200,12 +268,12 @@ class HomePage extends StatelessWidget {
             child: Column(
               // padding: const EdgeInsets.symmetric(horizontal: 16),
               children: const [
-                _AbsenTile(
+                AbsenTile(
                   tanggal: 'Kamis, 14 Desember 2022 : 15:56',
                   status: 'Pending',
                   tipe: 'Absen Masuk',
                 ),
-                _AbsenTile(
+                AbsenTile(
                   tanggal: 'Kamis, 14 Desember 2022 : 15:56',
                   status: 'Pending',
                   tipe: 'Absen Keluar',
@@ -230,17 +298,17 @@ class HomePage extends StatelessWidget {
                       top: Radius.circular(16),
                     ),
                   ),
-                  backgroundColor: Colors.white,
+                  backgroundColor: const Color.fromARGB(255, 239, 239, 239),
                   builder: (context) {
                     return FractionallySizedBox(
-                      heightFactor: 0.35,
+                      heightFactor: 0.3,
                       child: Container(
                         padding: const EdgeInsets.all(16),
                         child: GridView.count(
-                          padding: EdgeInsets.all(16),
+                          padding: EdgeInsets.all(4),
                           crossAxisCount: 4, // item baris
-                          mainAxisSpacing: 8, 
-                          crossAxisSpacing:8,
+                          mainAxisSpacing: 16, 
+                          crossAxisSpacing:4,
                           // childAspectRatio: 0.3,
                           // shrinkWrap: true,
                           physics:AlwaysScrollableScrollPhysics(),
@@ -312,14 +380,15 @@ class _BottomSheetMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(26),
+      borderRadius: BorderRadius.circular(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           CircleAvatar(
-            radius: 24,
+            radius: 20,
+            backgroundColor: Colors.transparent,
+            child: Icon(icon, size: 30, color: Colors.blue),
           
-            child: Icon(icon, size: 28, color: Colors.blue),
           ),
           SizedBox(height: 8),
           Text(label, style: TextStyle(fontSize: 14)),
@@ -405,12 +474,12 @@ class _MenuButton extends StatelessWidget {
   }
 }
 
-class _AbsenTile extends StatelessWidget {
+class AbsenTile extends StatelessWidget {
   final String tanggal;
   final String status;
   final String tipe;
 
-  const _AbsenTile({
+  const AbsenTile({super.key,
     required this.tanggal,
     required this.status,
     required this.tipe,
@@ -419,7 +488,8 @@ class _AbsenTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color(0xFF4B64D9),
+      
+      color: const Color(0xFF1A73E8),
       margin: const EdgeInsets.symmetric(vertical: 6),
       child: ListTile(
         leading: const Icon(Icons.receipt_long, color: Colors.white),

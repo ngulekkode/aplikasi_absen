@@ -10,7 +10,7 @@ class AbsenApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final Router = ref.watch(routerProvider);
     final ThemeData theme = ThemeData(
-      scaffoldBackgroundColor: const Color(0xFF4C63D2),
+      scaffoldBackgroundColor: const Color(0xFF1A73E8),
       fontFamily: 'Poppins',
     );
 

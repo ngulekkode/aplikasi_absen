@@ -41,6 +41,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
       ),
+      GoRoute(
+        path: '/start',
+        builder: (context, state) => const ChoiceRole(),
+      ),
     ],
   );
 });
