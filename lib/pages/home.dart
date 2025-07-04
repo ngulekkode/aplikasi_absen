@@ -22,74 +22,74 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-drawer: Drawer(
-  child: Column(
-    children: [
-      // Header dengan nama & email
-      UserAccountsDrawerHeader(
-        accountName: Text("budi pelopor"),
-        accountEmail: Text("hartoyono@example.com"),
-        currentAccountPicture: CircleAvatar(
-          backgroundColor: Colors.white,
-          child: Icon(Icons.person, color: Colors.blue, size: 40),
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF4B64D9), Color(0xFF5AC8FA)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-      ),
-      // Menu item utama
-      ListTile(
-        leading: Icon(Icons.home),
-        title: Text('Beranda'),
-        onTap: () {
-          Navigator.pop(context);
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.history),
-        title: Text('Riwayat Absen'),
-        onTap: () {
-          Navigator.pushNamed(context, '/riwayat');
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.settings),
-        title: Text('Pengaturan'),
-        onTap: () {
-          // Tambahkan aksi pengaturan
-        },
-      ),
-      const Divider(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            // Header dengan nama & email
+            UserAccountsDrawerHeader(
+              accountName: Text("budi pelopor"),
+              accountEmail: Text("hartoyono@example.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.person, color: Colors.blue, size: 40),
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFF4B64D9), Color(0xFF5AC8FA)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ),
+            // Menu item utama
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Beranda'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.history),
+              title: Text('Riwayat Absen'),
+              onTap: () {
+                Navigator.pushNamed(context, '/riwayat');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Pengaturan'),
+              onTap: () {
+                // Tambahkan aksi pengaturan
+              },
+            ),
+            const Divider(),
 
-      // Bantuan atau info
-      ListTile(
-        leading: Icon(Icons.info_outline),
-        title: Text('Tentang Aplikasi'),
-        onTap: () {},
-      ),
+            // Bantuan atau info
+            ListTile(
+              leading: Icon(Icons.info_outline),
+              title: Text('Tentang Aplikasi'),
+              onTap: () {},
+            ),
 
-      const Spacer(),
+            const Spacer(),
 
-      // Logout di bawah
-      Padding(
-        padding: EdgeInsets.only(bottom: 16),
-        child: ListTile(
-          leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/pp.png'),
-          ),
-          title: Text("Keluar", style: TextStyle(color: Colors.red)),
-          onTap: () {
-            context.push('/start');
-          },
+            // Logout di bawah
+            Padding(
+              padding: EdgeInsets.only(bottom: 16),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage('assets/pp.png'),
+                ),
+                title: Text("Keluar", style: TextStyle(color: Colors.red)),
+                onTap: () {
+                  context.push('/start');
+                },
+              ),
+            ),
+          ],
         ),
       ),
-    ],
-  ),
-),
 
       body: ListView(
         padding: EdgeInsets.zero,
@@ -226,7 +226,13 @@ drawer: Drawer(
                   context.push('/done_presence');
                 },
               ),
-              _MenuButton(icon: Icons.attach_file, label: 'LAMPIRAN'),
+              _MenuButton(
+                icon: Icons.attach_file,
+                label: 'LAMPIRAN',
+                onPressed: () {
+                  context.push('/ListKaryawan');
+                },
+              ),
             ],
           ),
 
@@ -247,19 +253,20 @@ drawer: Drawer(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: TextButton(onPressed: () {
-                context.push('/history_absen');
-              },
-              child: Text(
-                'Riwayat Absensi',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.orange,
+              child: TextButton(
+                onPressed: () {
+                  context.push('/history_absen');
+                },
+                child: Text(
+                  'Riwayat Absensi',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange,
+                  ),
                 ),
               ),
             ),
-          ),
           ),
           const SizedBox(height: 8),
 
@@ -291,8 +298,7 @@ drawer: Drawer(
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
-                  isScrollControlled:
-                      true,
+                  isScrollControlled: true,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(16),
@@ -307,11 +313,11 @@ drawer: Drawer(
                         child: GridView.count(
                           padding: EdgeInsets.all(4),
                           crossAxisCount: 4, // item baris
-                          mainAxisSpacing: 16, 
-                          crossAxisSpacing:4,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 4,
                           // childAspectRatio: 0.3,
                           // shrinkWrap: true,
-                          physics:AlwaysScrollableScrollPhysics(),
+                          physics: AlwaysScrollableScrollPhysics(),
                           children: [
                             _BottomSheetMenuItem(
                               icon: Icons.date_range_outlined,
@@ -330,16 +336,12 @@ drawer: Drawer(
                             _BottomSheetMenuItem(
                               icon: Icons.access_time_sharp,
                               label: 'Lembur',
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                             ),
                             _BottomSheetMenuItem(
                               icon: Icons.sick_outlined,
                               label: 'Sakit',
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                             ),
                             _BottomSheetMenuItem(
                               icon: Icons.help,
@@ -374,7 +376,11 @@ class _BottomSheetMenuItem extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
 
-  const _BottomSheetMenuItem({required this.icon, required this.label, required this.onTap});
+  const _BottomSheetMenuItem({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -388,7 +394,6 @@ class _BottomSheetMenuItem extends StatelessWidget {
             radius: 20,
             backgroundColor: Colors.transparent,
             child: Icon(icon, size: 30, color: Colors.blue),
-          
           ),
           SizedBox(height: 8),
           Text(label, style: TextStyle(fontSize: 14)),
@@ -479,7 +484,8 @@ class AbsenTile extends StatelessWidget {
   final String status;
   final String tipe;
 
-  const AbsenTile({super.key,
+  const AbsenTile({
+    super.key,
     required this.tanggal,
     required this.status,
     required this.tipe,
@@ -488,7 +494,6 @@ class AbsenTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      
       color: const Color(0xFF1A73E8),
       margin: const EdgeInsets.symmetric(vertical: 6),
       child: ListTile(

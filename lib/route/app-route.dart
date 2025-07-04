@@ -8,6 +8,7 @@ import 'package:absen_app/pages/login.dart';
 import 'package:absen_app/pages/home.dart';
 import 'package:absen_app/pages/karyawanhome.dart';
 import 'package:absen_app/pages/cuti.dart';
+import 'package:absen_app/pages/ListKaryawan.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -41,9 +42,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
       ),
+      GoRoute(path: '/start', builder: (context, state) => const ChoiceRole()),
       GoRoute(
-        path: '/start',
-        builder: (context, state) => const ChoiceRole(),
+        path: '/ListKaryawan',
+        builder: (context, state) => const ListKaryawanScreen(),
       ),
     ],
   );
