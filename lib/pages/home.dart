@@ -53,14 +53,14 @@ class HomePage extends StatelessWidget {
               leading: Icon(Icons.history),
               title: Text('Riwayat Absen'),
               onTap: () {
-                Navigator.pushNamed(context, '/riwayat');
+                context.push('/history_absen');
               },
             ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Pengaturan'),
               onTap: () {
-                // Tambahkan aksi pengaturan
+                context.push('/Settings');
               },
             ),
             const Divider(),
@@ -78,10 +78,8 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: 16),
               child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage('assets/pp.png'),
-                ),
-                title: Text("Keluar", style: TextStyle(color: Colors.red)),
+                leading: Icon(Icons.exit_to_app, color: Colors.red),
+                title: Text("Keluar", style: TextStyle(color: Colors.black)),
                 onTap: () {
                   context.push('/start');
                 },
@@ -109,7 +107,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/pp.png'),
+                      backgroundImage: AssetImage('assets/image 4.png'),
                     ),
                     const SizedBox(width: 10),
                     Column(
@@ -339,9 +337,11 @@ class HomePage extends StatelessWidget {
                               onTap: () {},
                             ),
                             _BottomSheetMenuItem(
-                              icon: Icons.sick_outlined,
-                              label: 'Sakit',
-                              onTap: () {},
+                              icon: Icons.assignment_add,
+                              label: 'Izin',
+                              onTap: () {
+                                context.push('/Request');
+                              },
                             ),
                             _BottomSheetMenuItem(
                               icon: Icons.help,

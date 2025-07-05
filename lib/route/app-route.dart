@@ -1,6 +1,8 @@
 import 'package:absen_app/pages/done_absen.dart';
 import 'package:absen_app/pages/history_absen.dart';
 import 'package:absen_app/pages/profile.dart';
+import 'package:absen_app/pages/request.dart';
+import 'package:absen_app/pages/setting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:absen_app/pages/choice_role.dart';
@@ -42,10 +44,21 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
       ),
-      GoRoute(path: '/start', builder: (context, state) => const ChoiceRole()),
+      GoRoute(
+        path: '/start',
+        builder: (context, state) => const ChoiceRole()
+      ),
       GoRoute(
         path: '/ListKaryawan',
         builder: (context, state) => const ListKaryawanScreen(),
+      ),
+      GoRoute(
+        path: '/Settings',
+        builder: (context, state) => const SettingPage(),
+      ),
+            GoRoute(
+        path: '/Request',
+        builder: (context, state) => const Request(),
       ),
     ],
   );

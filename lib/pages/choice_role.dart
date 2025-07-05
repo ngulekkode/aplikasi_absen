@@ -69,7 +69,7 @@ class _HomeAppState extends State<ChoiceRole> {
           ),
           LoginKaryawan(
             onTap: () {
-              context.go('/login/Karyawan');
+              context.go('/login/manager');
             },
           ),
         ],

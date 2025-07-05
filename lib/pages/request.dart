@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class LeaveRequestPage extends StatefulWidget {
-  const LeaveRequestPage({super.key});
+class Request extends StatefulWidget {
+  const Request({super.key});
 
   @override
-  State<LeaveRequestPage> createState() => _LeaveRequestPageState();
+  State<Request> createState() => _RequestState();
 }
 
-class _LeaveRequestPageState extends State<LeaveRequestPage> {
+class _RequestState extends State<Request> {
   String? selectedLeaveType;
   final List<String> leaveTypes = [
-    'Cuti Tahunan',
-    'Cuti Sakit',
-    'Cuti Melahirkan',
+    'Izin Sakit',
+    'Pulang Awal',
+    'Izin',
   ];
 
   @override
@@ -28,7 +28,10 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text('Cuti', style: TextStyle(color: Colors.white)),
+        title: const Text(
+          'Request',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -37,28 +40,12 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
           children: [
             const SizedBox(height: 10),
 
-            // Tabs
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _tabItem('Pengajuan Cuti', true),
-                _tabItem('Riwayat Cuti', false),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-
             // Info cards
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  _InfoCard('Sisa Cuti\n1 Hari', Colors.red),
-                  _InfoCard('Kuota Cuti\n1 Hari', Colors.grey),
-                  _InfoCard('Laporan\nTahunan', Colors.orange),
-                  _InfoCard('Laporan\nBulanan', Colors.teal),
-                ],
+                children: [_InfoCard('Riwayat izin', Colors.blue )],
               ),
             ),
 
@@ -231,23 +218,29 @@ class _InfoCard extends StatelessWidget {
   final String text;
   final Color color;
 
-  const _InfoCard(this.text, this.color);
+  const _InfoCard( this.text, this.color);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 70,
-      height: 70,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: const TextStyle(color: Colors.white, fontSize: 12),
+    return InkWell(
+      child: Container(
+        width: 400,
+        height: 50,
+        // padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
       ),
     );
